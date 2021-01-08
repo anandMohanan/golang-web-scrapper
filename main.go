@@ -23,13 +23,16 @@ var (
 
 func main() {
 
-	arguments := os.Args[1:]
+	var arguments string
+	fmt.Printf("please enter a URL: ")
+	fmt.Scanln(&arguments)
+
 	if len(arguments) == 0 {
 		fmt.Println("Provide a url")
 		os.Exit(1)
 	}
 
-	baseURL := arguments[0]
+	baseURL := arguments
 	fmt.Println(baseURL)
 
 	getURL(baseURL)
@@ -46,9 +49,9 @@ func getURL(href string) {
 
 	checkError(err)
 
-	for _, link := range links {
-		// fmt.Printf("index %v -- link %+v \n", i, link)
-		getURL(link.Href)
+	for i, link := range links {
+		fmt.Printf("index %v -- link %+v \n", i, link)
+		// getURL(link.Href)
 	}
 }
 
